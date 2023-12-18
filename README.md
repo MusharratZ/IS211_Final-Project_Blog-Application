@@ -1,4 +1,3 @@
-# IS211_Final-Project_Blog-Application
 For requirement 2 
         "I should be able to checkout your project repository, run pythonapp.pyand expect a working
         version of your project. Opening a web browser to the application main URL should have it bring up

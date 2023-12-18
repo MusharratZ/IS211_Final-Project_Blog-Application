@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %} Add Blog {% endblock %}
+{% block content %}
+
+
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">Add Post</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="{{url_for('main.index')}}">Home</a></li>
+                        <li>Add Post</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+<!-- Start Contact Area -->
+    <div class="contact-us section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-12">
+                    <div class="contact-form">
+                        
+                         <form method="POST" enctype="multipart/form-data" action="{{ url_for('posts.create') }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.title.label(class="form-control-label") }}
+      {{ form.title(class="form-control") }}
+      {% for error in form.title.errors %}
+        <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.category_id.label(class="form-control-label") }}
+      {{ form.category_id(class="form-control") }}
+      {% for error in form.category_id.errors %}
+        <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.description.label(class="form-control-label") }}
+      {{ form.description(class="form-control") }}
+      {% for error in form.description.errors %}
+        <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.image.label(class="form-control-label") }}
+      {{ form.image(class="form-control") }}
+      {% for error in form.image.errors %}
+        <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+    </div>
+
+    <div class="form-group">
+      {{ form.is_published.label(class="form-control-label") }}
+      {{ form.is_published(class="form-check-input") }}
+      {% for error in form.is_published.errors %}
+        <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+    </div>
+    <div class="button">
+    <button type="submit" class="btn btn-primary">Create Post</button>
+    </div>
+  </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- End Contact Area -->
+
+{% endblock %}

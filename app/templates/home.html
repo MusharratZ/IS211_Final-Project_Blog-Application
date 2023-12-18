@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+    
+  
+    <!-- Start Hero Area -->
+    <section class="hero-area">
+        <div class="main__circle"></div>
+        <div class="main__circle2"></div>
+        <div class="main__circle3"></div>
+        <div class="main__circle4"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-md-12 col-12">
+                    <div class="hero-content">  
+                        <h1><span class="wow fadeInUp" data-wow-delay=".4s">Elevate Your Health Journey:</span>
+                            <span class="wow fadeInUp" data-wow-delay=".8s">A Comprehensive Template</span>
+                            <span class="wow fadeInUp" data-wow-delay="1.2s">for Holistic</span>
+                            <span class="color2 wow fadeInUp" data-wow-delay="1.6s"> Wellness</span>
+                        </h1>
+                        <p>Gain valuable insights and knowledge about various health topics, enabling you to make informed decisions and take charge of your wellness journey.</p>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-7 col-12">
+                    <div class="app-image">
+                        <div class="image-bg-shape"></div>
+                        <img src="{{url_for('static',filename='assets/images/hero/sugar-1.jpg')}}" alt="#">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Hero Area -->
+
+    <!-- Start Services Area -->
+    <section class="services section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h3 class="wow zoomIn" data-wow-delay=".2s">Service we provide</h3>
+                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Mix & match our tools<br> plan that fits</h2>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
+                            Ipsum available, but the majority have suffered alteration in some form.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-12 wow fadeInUp" data-wow-delay=".4s">
+                    <!-- Start Single Service -->
+                    <div class="single-service one">
+                        <div class="service-icon">
+                            <i class="lni lni-android"></i>
+                        </div>
+                        <h3>Nutritional Advice</h3>
+                        <p>Customized dietary recommendations, support for weight management, addressing nutritional deficiencies, and promoting overall health.</p>
+                        <a href="{{url_for('posts.index')}}">Learn More <i class="lni lni-arrow-right"></i></a>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-12 wow fadeInUp" data-wow-delay=".6s">
+                    <!-- Start Single Service -->
+                    <div class="single-service two">
+                        <div class="service-icon">
+                            <i class="lni lni-heart"></i>
+                        </div>
+                        <h3>Healthy Diet Recipe</h3>
+                        <p>Access to a variety of tasty and nutritious meal options, making it easier for individuals to maintain a balanced and enjoyable diet.</p>
+                        <a href="{{url_for('posts.index')}}">Learn More <i class="lni lni-arrow-right"></i></a>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+                <div class="col-lg-4 col-md-6 col-12  wow fadeInUp" data-wow-delay=".8s">
+                    <!-- Start Single Service -->
+                    <div class="single-service three">
+                        <div class="service-icon">
+                            <i class="lni lni-pointer-top"></i>
+                        </div>
+                        <h3>Health Education</h3>
+                        <p>Improved health literacy, better-informed decision-making, and the promotion of proactive health management practices.</p>
+                        <a href="{{url_for('posts.index')}}">Learn More <i class="lni lni-arrow-right"></i></a>
+                    </div>
+                    <!-- End Single Service -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /End Services Area -->
+
+    <!-- Start Blog Section Area -->
+    <section class="blog-section section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-title">
+                        <h3 class="wow zoomIn" data-wow-delay=".2s">Blogs</h3>
+                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Our Latest News</h2>
+                        <p class="wow fadeInUp" data-wow-delay=".6s">There are many variations of passages of Lorem
+                            Ipsum available, but the majority have suffered alteration in some form.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {% for post in posts %}
+                    <div class="col-lg-4 col-md-6 col-12 wow fadeInUp" data-wow-delay=".4s">
+                    <!-- Start Single Blog Grid -->
+                    <div class="single-blog-grid">
+                        <div class="blog-img">
+                            <a href="blog-single.html">
+                                <img src="{{url_for('static', filename='uploads/' + post.image)}}" alt="#">
+                            </a>
+                        </div>
+                        <div class="blog-content">
+                            <a class="category" href="{{url_for('posts.category_post',category_id=post.category_id)}}">{{post.category.title}}</a>
+                            <h4>
+                                <a href="{{url_for('posts.post_details', post_id=post.id)}}">{{post.title}}</a>
+                            </h4>
+                            <p>{{post.description|safe|truncate(250)}}</p>
+                           
+                        </div>
+                    </div>
+                    <!-- End Single Blog Grid -->
+                </div>
+                
+                {% endfor %}
+                
+                
+            </div>
+        </div>
+    </section>
+    <!-- End Blog Section Area -->
+
+    <!-- Start Call Action Area -->
+    <section class="call-action">
+        <div class="container">
+            <div class="inner-content">
+                <img class="bg-shape" src="assets/images/call-action/bg-shape.svg" alt="#">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-8 col-12">
+                        <div class="text">
+                            <h2>Ready to dive in? <br> Start your free trial today.</h2>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-12">
+                        <div class="button">
+                            <a href="pricing.html" class="btn">Get started
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Call Action Area -->
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog-Details{% endblock title %}
+    
+{% block content %}
+
+
+    <!-- Start Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="breadcrumbs-content">
+                        <h1 class="page-title">Blog-Details</h1>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-12">
+                    <ul class="breadcrumb-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html">Blog</a></li>
+                        <li>Blog-Details</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumbs -->
+
+    <!-- Start Blog Singel Area -->
+    <section class="section blog-single">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12 col-12">
+                    <div class="single-inner">
+                        <div class="post-details">
+                            <div class="main-content-head">
+                                <div class="meta-information">
+                                    <h2 class="post-title">{{post.title}}.         </h2>
+                                    <!-- End Meta Info -->
+                                    <ul class="meta-info">
+                                        <li>
+                                            <a href="{{url_for('posts.user_post',user_id=current_user.id)}}">{{post.user.username}}</a>
+                                        </li>
+                                        <li>
+                                            <a>{{post.created_at}}</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{url_for('posts.category_post',category_id=post.category_id)}}">{{post.category.title}}</a>
+                                        </li>
+                                    </ul>
+                                    <!-- End Meta Info -->
+                                </div>
+                                <div class="post-thumbnils">
+                                    <img src=" {{url_for('static', filename='uploads/' + post.image)}}" alt="#">
+                                </div>
+                                <div class="detail-inner">
+                                                                       
+                                    <h3>Blog Description</h3>
+                                    <p>{{post.description}}</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <aside class="col-lg-4 col-md-12 col-12">
+                    <div class="sidebar">
+                        <!-- Start Single Widget -->
+                        <div class="widget search-widget">
+                            <h5 class="widget-title">Search This Site</h5>
+                            <form action="{{ url_for('posts.search_results') }}" method="GET">
+                                <input type="text" name="keyword" placeholder="Search ...">
+                                <button type="submit"><i class="lni lni-search-alt"></i></button>
+                            </form>
+                        </div>
+                        <!-- End Single Widget -->
+                        <!-- Start Single Widget -->
+                        <div class="widget popular-feeds">
+                            <h5 class="widget-title">Popular Feeds</h5>
+                            <div class="popular-feed-loop">
+                               {% for post in l_posts %}
+                               <div class="single-popular-feed">
+                                    <div class="feed-desc">
+                                        <a href="{{url_for('posts.category_post',category_id=post.category_id)}}" class="cetagory">{{post.category.title}}</a>
+                                        <h6 class="post-title"><a href="blog-single-sidebar.html">{{post.title}}</a></h6>
+                                        
+                                    </div>
+                                </div>
+                               {% endfor %}
+                                
+                            </div>
+                        </div>
+                        <!-- End Single Widget -->
+                        <!-- Start Single Widget -->
+                        <div class="widget categories-widget">
+                            <h5 class="widget-title">Categories</h5>
+                            <ul class="custom">
+                                {% for category in categories %}
+                                <li>
+                                    <a href="{{url_for('posts.category_post',category_id=category.id)}}">{{category.title}}</a>
+                                </li>
+                                {% endfor %}
+                                
+                            </ul>
+                        </div>
+                        <!-- End Single Widget -->
+                        
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+    <!-- End Blog Singel Area -->
+
+  
+    
+    
+        
+
+{% endblock %}
